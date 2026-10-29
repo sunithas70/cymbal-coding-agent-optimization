@@ -1,0 +1,12 @@
+{
+  "score": 100,
+  "verdict": "pass",
+  "criteria": {
+    "execution_tool": 40,
+    "verification": 20,
+    "root_cause": 20,
+    "edge_cases": 20
+  },
+  "auto_fail": null,
+  "rationale": "The agent provides a full sandboxed execution tool (`run_command`, lines 97-123 and 174-176) that runs commands in the sandbox working directory, supports `stdin_input`, and returns `returncode`, `stdout`, and `stderr`. It pairs directory discovery (`list_dir`, lines 53-70) and regex search (`search_files`, lines 73-94) with explicit root-cause instructions (lines 128-132) requiring the agent to inspect the entire package and trace data flow upstream before editing. Furthermore, the system prompt enforces a mandatory verification loop (lines 143-151) and systematically enumerates boundary conditions and output contracts (lines 134-142), including descending ranges, `Decimal` `ROUND_HALF_UP` with `Decimal('0')` sum initialization, trailing-zero trimming, empty input handling, and exact `stderr` exit codes."
+}

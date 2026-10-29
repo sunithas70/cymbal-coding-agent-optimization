@@ -1,0 +1,15 @@
+.venv/
+.gemini/
+.cache/
+.config/
+.docker/
+.npm/
+.vscode/
+__pycache__/
+*.pyc
+.bash*
+.profile
+.sudo_as_admin_successful
+README-cloudshell.txt
+settings.json
+out/

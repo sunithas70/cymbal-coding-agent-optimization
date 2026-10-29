@@ -1,0 +1,13 @@
+{
+  "task": "invoice_report",
+  "observed_mode": "Mode A — total stays 124 / cents still lost",
+  "description": "For invoice_report, I observed that running repro.sh failed with AssertionError: 124 (expected 125.49). In trajectory.evalset.json and tool_uses.json, the agent only called read_file and write_file on src/invoices/report.py, changing round(sum(amounts), 2) to sum(Decimal(str(amount)) for amount in amounts), and never opened src/invoices/load.py or src/invoices/__init__.py. The coding agent failed because it lacked directory-listing and code-search tools (and root-cause tracing instructions) to explore beyond the file named in the prompt and trace upstream to parse_amount in src/invoices/load.py where int(float(raw)) truncates cents, and it lacked a code execution tool to run tests and verify that its edit to report.py did not fix the output.",
+  "score": 100,
+  "criteria": {
+    "capability_gap_and_mechanism": 60,
+    "specificity": 25,
+    "consequence_or_remediation": 15
+  },
+  "verdict": "accepted",
+  "timestamp": "2026-10-29T09:42:00Z"
+}
